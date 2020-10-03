@@ -324,31 +324,3 @@ btn.on('click', function(e) {
 	</script>
 	</body>	
 </html>
-
-<?php
-include'connection.php';
-
-if (isset($_POST['submit'])) {
-
-	$name=$_POST['name'];
-	$email=$_POST['email'];
-	$Contact=$_POST['phone'];
-	$symtoms=$_POST['Symptoms'];
-	$message=$_POST['details'];
-	$chk="";
-	foreach ($symtoms as $symp) {
-		$chk .=$symp.",";
-	}
-
-	$sql="insert into coronacase(name,email,contact,symtoms,description) values('$name','$email','$Contact','$chk','$message')";
-	if (mysqli_query($conn, $sql)) {
-     echo "Record added successfully";
-	//header('Location:'.$_SERVER['PHP_SELF']);
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-}
-
-//unset($_POST['submit']);
-?>
